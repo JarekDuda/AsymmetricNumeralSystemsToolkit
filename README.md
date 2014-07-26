@@ -3,7 +3,7 @@ AsymmetricNumeralSystemsToolkit
 
 Testing various methods for choosing tANS entropy coding automata
 
-ANS is new approach to entropy coding, which adds fractional bits into consideration into Huffman-like decoder, combining its speed with accuracy of arithmetic coding, like in implementation of Yann Collet ( https://github.com/Cyan4973/FiniteStateEntropy ). Another advantage in comparison to Huffman coding is that we choose the size of coding tables (L) here, corresponding to 2^depth of Huffman tree, and that there is no need to sort symbol probabilities (linear initialization).
+ANS is new approach to entropy coding, which adds fractional bits into consideration into Huffman-like decoder, combining its speed with accuracy of arithmetic coding, like in [implementation of Yann Collet](https://github.com/Cyan4973/FiniteStateEntropy). Another advantage in comparison to Huffman coding is that we choose the size of coding tables (L) here, corresponding to 2^depth of Huffman tree, and that there is no need to sort symbol probabilities (linear initialization).
 
 The choice of such finite L state entropy coding automaton consists of:
 - quantization of symbol probability distribution as p[s] ~ q[s]/L fractions (q is a natural number)
