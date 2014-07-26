@@ -127,7 +127,7 @@ struct ANS {
      delete[] s; s = new avar[L];
      tvar sym[L], first[L], next[L];         
      int cp, pos=0; 
-     for(int i=0; i<=L; i++) first[i]=next[i]=L;       // empty all lists (L is the guardian)
+     for(int i=0; i<L; i++) first[i]=next[i]=L;       // empty all lists (L is the guardian)
      for(int sm=0; sm<m; sm++){                       // for each position, build lists of preferred symbols         
          for(int i=q[sm];i<2*q[sm];i++){
              sym[pos]=sm;
@@ -147,8 +147,7 @@ struct ANS {
   void heapify(){
       for(int x=2*L-2;x;x-=2) sp[x>>1]=sp[x]+sp[x+1];                     // build heap of sums
       if(abs(sp[1]-1)>acc) 
-      {prec c=1/sp[1]; 
-      for(int x=1;x<2*L;x++)sp[x]*=c;}    //normalize to 1
+      {prec c=1/sp[1]; for(int x=1;x<2*L;x++)sp[x]*=c;}    //normalize to 1
   }
  void make_step(){                       // propagate stationary probability by one step
      prec * nsp = new prec[2*L];         // new sp
