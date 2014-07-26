@@ -7,6 +7,7 @@ ANS is new approach to entropy coding, which adds fractional bits into considera
 The choice of such finite L state entropy coding automaton consists of:
 - quantization of symbol probability distribution as p[s] ~ q[s]/L fractions (q is a natural number)
 - speading these symbols in range [0, L-1], such that symbol s appears q[s] times
+
 This toolkit contains various choices of these functions, allows to test obtained compression rates, compare with Huffman. Currently it allows to choose betwen:
 
 1) Symobol probability distributions: 
