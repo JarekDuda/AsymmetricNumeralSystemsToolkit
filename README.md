@@ -24,13 +24,7 @@ This toolkit contains various choices of these functions, allows to test obtaine
 - spread_prec():  very good using only q - wants to distributie symbols in 1/q[s] distance (still linear, but slower),
 - spread_tuned(): uses both q and p - wants to get close to 1/x stationary probability of states (still linear, best compression rate).
 
-Some sources:
-
-arxiv: http://arxiv.org/abs/1311.2540
-
-slides: https://dl.dropboxusercontent.com/u/12405967/ANSsem.pdf
-
-discussion: http://encode.ru/threads/2013-Asymmetric-numeral-system-toolkit-and-fast-tuned-symbol-spread
+Some sources: [article](http://arxiv.org/abs/1311.2540), [slides](https://dl.dropboxusercontent.com/u/12405967/ANSsem.pdf), [discussion](http://encode.ru/threads/2013-Asymmetric-numeral-system-toolkit-and-fast-tuned-symbol-spread).
 
 Feel free to add new probability distributions, better quantizers and spreads.
 
