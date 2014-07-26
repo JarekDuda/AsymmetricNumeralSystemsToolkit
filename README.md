@@ -25,19 +25,24 @@ This toolkit contains various choices of these functions, allows to test obtaine
 - spread_prec():  very good using only q - wants to distributie symbols in 1/q[s] distance (still linear, but slower),
 - spread_tuned(): uses both q and p - wants to get close to 1/x stationary probability of states (still linear, best compression rate).
 
-For example for 4 symbol and L=16 states:
-
-p: 0.04 0.16 0.16 0.64
-
-q/L: 0.0625 0.1875 0.125 0.625
-
-this quantization itself has dH/H ~ 0.011 rate penalty
-
-spread_fast() gives 0233233133133133 and dH/H ~ 0.020
-
-spread_prec() gives 3313233103332133 and dH/H ~ 0.015 - generally it is close to quantization dH/H
-
-while spread_tuned(): 3233321333313310 and dH/H ~ 0.0046 - better than quantization dH/H due to using also p
+For example for 4 symbol and L=16 states: p=(0.04 0.16 0.16 0.64), q/L=(0.0625 0.1875 0.125 0.625)
+<table>
+  <tr>
+    <th>method</th><th>symbol spread</th><th>dH/H rate loss</th><th>comment</th>
+  </tr>
+  <tr>
+    <th> - </th><th> - </th><th>~0.011</th><th>penalty of quantizer itself</th>
+  </tr>
+   <tr>
+    <th>spread_fast()</th><th>0233233133133133</th><th>~0.020</th><th> </th>
+  </tr>
+  <tr>
+    <th>spread_prec()</th><th>3313233103332133</th><th>~0.015</th><th>generally close to quantization dH/H</th>
+  </tr>
+    <tr>
+    <th>spread_tuned()</th><th>3233321333313310</th><th>~0.0046</th><th>better than quantization dH/H due to using also p</th>
+  </tr>
+</table>
 
 Tuning shifts symbols right when q[s]/L > p[s] and left otherwise, getting better agreement and so compression rate. 
 
