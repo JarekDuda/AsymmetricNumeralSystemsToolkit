@@ -85,7 +85,7 @@ struct ANS {
          for( ;used!=L; used+=sgn){
              auto par = v.front(); pop_heap(v.begin(),v.end());v.pop_back();
              cc[par.second]= -par.first;
-             if(q[par.second]+=sgn){
+             if((q[par.second]+=sgn)+sgn){
                 v.push_back({- par.first - pow(pL[par.second]-(q[par.second]+sgn),2)*ip[par.second], par.second}); 
                 push_heap (v.begin(),v.end());    
              }
@@ -125,14 +125,14 @@ struct ANS {
  }
  void spread_tuned(){        // O(L) tuned spread - uses both q and p
      delete[] s; s = new avar[L];
-     tvar sym[L], first[L], next[L];
+     tvar sym[L+1], first[L+1], next[L+1];            // "+1" is special for low probable symbols
      int cp, pos=0; 
-     for(int i=0; i<L; i++) first[i]=next[i]=L;       // empty all lists (L is the guardian)
+     for(int i=0; i<=L; i++) first[i]=next[i]=L;       // empty all lists (L is the guardian)
      for(int sm=0; sm<m; sm++){                       // for each position, build lists of preferred symbols         
          for(int i=q[sm];i<2*q[sm];i++){
              sym[pos]=sm;
              int ins=round(1/(p[sm]*log(1+1/(prec)i))-L);    // PREFERRED POSITION FOR THIS SYMBOL OCCURANCE
-             ins=max(0,min(ins,L-1));                        // low probable symbols would go above
+             ins=min(max(ins,0),(int)L);                        // low probable symbols would go above
              next[pos]=first[ins]; first[ins]=pos++;         // insert in this position
          }
      }    cout<<endl;
@@ -212,6 +212,7 @@ ANS test=init_binary(0.2,2);         // n binary  variables,  m=2^n
 test.quantize_prec(4);                        // choose quantization
 // test.quantize_fast(12);                      // L = 2^value
 // test.printq();
+// int sum=0; for(int i=0;i<test.m;i++)sum+=test.q[i]; cout<<"sum:"<<sum<<endl;
 test.calc_h();                              // find entropies
 //test.spread_fast();                       // choose symbol spread
 //test.spread_prec();
