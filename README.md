@@ -30,6 +30,8 @@ arxiv: http://arxiv.org/abs/1311.2540
 
 slides: https://dl.dropboxusercontent.com/u/12405967/ANSsem.pdf
 
+discussion: http://encode.ru/threads/2013-Asymmetric-numeral-system-toolkit-and-fast-tuned-symbol-spread
+
 Feel free to add new probability distributions, better quantizers and spreads.
 
 Jarek Duda, July 2014
