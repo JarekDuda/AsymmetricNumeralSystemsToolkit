@@ -215,7 +215,7 @@ test.quantize_prec(4);                        // choose quantization
 test.calc_h();                              // find entropies
 //test.spread_fast();                       // choose symbol spread
 //test.spread_prec();
-test.spread_prec();
+test.spread_tuned();
 // test.prints();
 test.find_sp();                             // find stationary probability and hANS
 
