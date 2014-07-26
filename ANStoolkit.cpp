@@ -125,14 +125,14 @@ struct ANS {
  }
  void spread_tuned(){        // O(L) tuned spread - uses both q and p
      delete[] s; s = new avar[L];
-     tvar sym[L+1], first[L+1], next[L+1];            // "+1" is special for low probable symbols
+     tvar sym[L], first[L], next[L];         
      int cp, pos=0; 
      for(int i=0; i<=L; i++) first[i]=next[i]=L;       // empty all lists (L is the guardian)
      for(int sm=0; sm<m; sm++){                       // for each position, build lists of preferred symbols         
          for(int i=q[sm];i<2*q[sm];i++){
              sym[pos]=sm;
              int ins=round(1/(p[sm]*log(1+1/(prec)i))-L);    // PREFERRED POSITION FOR THIS SYMBOL OCCURANCE
-             ins=min(max(ins,0),(int)L);                        // low probable symbols would go above
+             ins=min(max(ins,0),L-1);                        // low probable symbols would go above
              next[pos]=first[ins]; first[ins]=pos++;         // insert in this position
          }
      }    cout<<endl;
