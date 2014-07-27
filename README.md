@@ -23,8 +23,9 @@ This toolkit contains various choices of these functions, allows to test obtaine
 3) symbol spread:
 - spread_fast(): basic Yann Collet's random spread - very fast,
 - spread_prec():  very good using only q - wants to distributie symbols in 1/q[s] distance (still linear, but slower),
-- spread_tuned(): uses both q and p - wants to get close to 1/x stationary probability of states (still linear, best compression rate).
-
+- spread_tuned(): uses both q and p - wants to get close to 1/x stationary probability of states (still linear, best compression rate),
+- spread_tuned_s(): uses sort instead of buckets - can be slighlty better, but slower.
+ 
 For example for 4 symbol and L=16 states: p=(0.04 0.16 0.16 0.64), q/L=(0.0625 0.1875 0.125 0.625)
 <table>
   <tr>
@@ -34,7 +35,7 @@ For example for 4 symbol and L=16 states: p=(0.04 0.16 0.16 0.64), q/L=(0.0625 0
     <th> - </th><th> - </th><th>~0.011</th><th>penalty of quantizer itself</th>
   </tr>
    <tr>
-    <th>spread_fast()</th><th>0233233133133133</th><th>~0.020</th><th> </th>
+    <th>spread_fast()</th><th>0233233133133133</th><th>~0.020</th><th> fastest </th>
   </tr>
   <tr>
     <th>spread_prec()</th><th>3313233103332133</th><th>~0.015</th><th>generally close to quantization dH/H</th>
@@ -42,6 +43,10 @@ For example for 4 symbol and L=16 states: p=(0.04 0.16 0.16 0.64), q/L=(0.0625 0
     <tr>
     <th>spread_tuned()</th><th>3233321333313310</th><th>~0.0046</th><th>better than quantization dH/H due to using also p</th>
   </tr>
+  <tr>
+    <th>spread_tuned_s()</th><th>2333312333313310</th><th>~0.0040</th><th>L log L complexity (sort)</th>
+  </tr>
+  
 </table>
 
 Tuning shifts symbols right when q[s]/L > p[s] and left otherwise, getting better agreement and so compression rate. 
