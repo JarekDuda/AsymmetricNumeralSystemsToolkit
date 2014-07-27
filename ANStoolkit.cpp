@@ -123,7 +123,7 @@ struct ANS {
          pos=next[pos];                             // next symbol for this position
      }   
  }
- void spread_tuned(){        // O(L) tuned spread - uses both q and p
+ void spread_tuned(){        // O(L) tuned spread - uses both q and p   (buckets)
      delete[] s; s = new avar[L];
      tvar sym[L], first[L], next[L];         
      int cp, pos=0; 
@@ -142,6 +142,15 @@ struct ANS {
          s[i]=sym[pos];                             // choose the symbol
          pos=next[pos];                             // next symbol for this position
      }      
+ }    
+ void spread_tuned_s(){        // O(L) tuned spread with sort (n log n complexity)
+     delete[] s; s = new avar[L];
+     vector<pair<prec,avar>> v;
+     for(int sm=0; sm<m; sm++){                       // for each position, build lists of preferred symbols         
+         for(int i=q[sm];i<2*q[sm];i++)v.push_back({1/(p[sm]*log(1+1/(prec)i)),sm});
+     }
+     sort(v.begin(),v.end());
+     for(int i=0;i<L;i++) s[i]=v.at(i).second;
  }    
  // ---------- finding stationary probability and hANS  ----------------
   void heapify(){
@@ -211,11 +220,16 @@ ANS test=init_binary(0.2,2);         // n binary  variables,  m=2^n
 test.quantize_prec(4);                        // choose quantization
 // test.quantize_fast(12);                      // L = 2^value
 // test.printq();
-// int sum=0; for(int i=0;i<test.m;i++)sum+=test.q[i]; cout<<"sum:"<<sum<<endl;
+int sum=0; for(int i=0;i<test.m;i++)sum+=test.q[i];   // test quantizer
+if(sum!=test.L)cout<<"quantizer error: sums to "<<sum<<endl;
 test.calc_h();                              // find entropies
 //test.spread_fast();                       // choose symbol spread
 //test.spread_prec();
-test.spread_tuned();
+//test.spread_tuned();
+test.spread_tuned_s();
+int nb[test.m]; for(int i=0;i<test.L;i++)nb[test.s[i]]++;
+
+
 // test.prints();
 test.find_sp();                             // find stationary probability and hANS
 
