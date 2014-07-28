@@ -24,7 +24,8 @@ This toolkit contains various choices of these functions, allows to test obtaine
 - spread_fast(): basic Yann Collet's random spread - very fast,
 - spread_prec():  very good using only q - wants to distributie symbols in 1/q[s] distance (still linear, but slower),
 - spread_tuned(): uses both q and p - wants to get close to 1/x stationary probability of states (still linear, best compression rate),
-- spread_tuned_s(): uses sort instead of buckets - can be slighlty better, but slower.
+- spread_tuned_s(): uses sort instead of buckets - can be slighlty better, but slower,
+- pread_tuned_p(): uses 1/i approximation of 1/(p*ln(1+1/i)) formula for tuned spread,
  
 For example for 4 symbol and L=16 states: p=(0.04 0.16 0.16 0.64), q/L=(0.0625 0.1875 0.125 0.625)
 <table>
@@ -46,7 +47,9 @@ For example for 4 symbol and L=16 states: p=(0.04 0.16 0.16 0.64), q/L=(0.0625 0
   <tr>
     <th>spread_tuned_s()</th><th>2333312333313310</th><th>~0.0040</th><th>L log L complexity (sort)</th>
   </tr>
-  
+  <tr>
+    <th>spread_tuned_p()</th><th>2331233330133331</th><th>~0.0058</th><th>testing 1/(p ln(1+1/i)) ~ i/p approximation</th>
+  </tr>
 </table>
 
 Tuning shifts symbols right when q[s]/L > p[s] and left otherwise, getting better agreement and so compression rate. 
