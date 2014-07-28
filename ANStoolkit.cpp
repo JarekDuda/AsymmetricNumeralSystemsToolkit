@@ -152,6 +152,16 @@ struct ANS {
      sort(v.begin(),v.end());
      for(int i=0;i<L;i++) s[i]=v.at(i).second;
  }    
+ void spread_tuned_p(){        // using i/p approximation of 1/(p*ln(1+1/i))
+   delete[] s; s = new avar[L];
+   vector<pair<prec,avar>> v;
+   for(int sm=0; sm<m; sm++){                       // for each position, build lists of preferred symbols         
+       for(int i=q[sm];i<2*q[sm];i++)v.push_back({(prec)i / p[sm],sm});
+   }
+   sort(v.begin(),v.end());
+   for(int i=0;i<L;i++) s[i]=v.at(i).second;
+}
+
  // ---------- finding stationary probability and hANS  ----------------
   void heapify(){
       for(int x=2*L-2;x;x-=2) sp[x>>1]=sp[x]+sp[x+1];                     // build heap of sums
