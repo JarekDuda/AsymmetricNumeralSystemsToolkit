@@ -103,10 +103,16 @@ struct ANS {
         for(int i=0;i<q[sym];i++) {s[pos]=sym; pos = (pos+step) & mask;}    
      }       
  }
- void spread_range(){        // spread symbols in ranges
+ void spread_range_i(){        // spread symbols in ranges, increasing frequencies
    delete[] s; s = new avar[L];
    int pos=0;
-   for(int sm=0; sm<m; sm++)
+   for(int sm=0; sm < m; sm ++)
+       for(int i=0; i<q[sm]; i++) s[pos++]=sm;
+}
+  void spread_range_d(){        // spread symbols in ranges, decreasing frequencies
+   delete[] s; s = new avar[L];
+   int pos=0;
+   for(int sm=m-1; sm >= 0; sm--)
        for(int i=0; i<q[sm]; i++) s[pos++]=sm;
 }
  void spread_prec(){     // O(L) precise spread - when we know only q
@@ -229,11 +235,12 @@ ANS init_rand_unif(int n){   // simple random distribution
 
 int main()    // currently: single test
 {// choose probability distribution
-ANS test=init_binary(0.3,3);         // n binary  variables,  m=2^n             
+ANS test=init_binary(0.2,2);         // n binary  variables,  m=2^n             
 // ANS test=init_power(0.95,256);    // p_i ~ rho^i,  m=256
 //ANS test=init_rand_unif(256);      // m = 256
 // test.printp();
-test.quantize_prec(5);                        // choose quantization
+// sort(test.p,test.p+test.m,greater<float>());
+test.quantize_prec(4);                        // choose quantization
 // test.quantize_fast(12);                      // L = 2^value
 // test.printq();
 int sum=0; for(int i=0;i<test.m;i++)sum+=test.q[i];   // test quantizer
@@ -256,7 +263,10 @@ if(test.m < 20) test.printq();
 cout<<"Entropy for QUANTIZATION grows to " <<test.hq<< " ~ (1 + "<<(test.hq-test.h)/test.h<<")H bits/symbol"<< endl;
 cout<<"Then perform symbol spread"<<endl;
 
-cout<<"spread_range() - "; test.spread_range(); test.find_sp();
+cout<<"spread_range_i() - "; test.spread_range_i(); test.find_sp();
+if(test.m < 11) test.prints();
+cout<<"Entropy for its tANS is " <<test.hANS<< " ~ (1 + "<<(test.hANS-test.h)/test.h<<")H bits/symbol"<<endl;
+cout<<"spread_range_d() - "; test.spread_range_d(); test.find_sp();
 if(test.m < 11) test.prints();
 cout<<"Entropy for its tANS is " <<test.hANS<< " ~ (1 + "<<(test.hANS-test.h)/test.h<<")H bits/symbol"<<endl;
 cout<<"spread_fast() - "; test.spread_fast(); test.find_sp();
