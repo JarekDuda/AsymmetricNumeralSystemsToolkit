@@ -21,7 +21,7 @@ This toolkit contains various choices of these functions, allows to test obtaine
 - quantize_prec(R): find the quantization which minimizes sum_s (p[s] - q[s]/L)^2 / p[s] approximation of Kullback_Leibler distance (n log n complexity).
 
 3) symbol spread:
-- spread_range(): [Huffman coding can be seen as a special case of tANS](http://fastcompression.blogspot.fr/2014/01/huffman-comparison-with-fse.html): if spreading in size 2^k ranges - this spread takes it to general frequencies,
+- spread_range_i(), spread_range_d(), : [Huffman coding can be seen as a special case of tANS](http://fastcompression.blogspot.fr/2014/01/huffman-comparison-with-fse.html): if spreading in size 2^k ranges - these spreads take it to general frequencies (in increasing or decreasing order),
 - spread_fast(): basic Yann Collet's random spread - very fast,
 - spread_prec():  very good using only q - wants to distributie symbols in 1/q[s] distance (still linear, but slower),
 - spread_tuned(): uses both q and p - wants to get close to 1/x stationary probability of states (still linear, best compression rate),
@@ -37,13 +37,16 @@ For example for 4 symbol and L=16 states: p=(0.04 0.16 0.16 0.64), q/L=(0.0625 0
     <th> - </th><th> - </th><th>~0.011</th><th>penalty of quantizer itself</th>
   </tr>
   <tr>
-    <th> Huffman </th><th> 0011222233333333 </th><th>~0.080</th><th>corresponds to Huffman</th>
+    <th> Huffman </th><th> 0011222233333333 </th><th>~0.080</th><th>would give Huffman decoder</th>
   </tr>
   <tr>
-    <th>spread_range()</th><th>0111223333333333</th><th>~0.059</th><th> analogous to Huffman </th>
+    <th>spread_range_i()</th><th>0111223333333333</th><th>~0.059</th><th> analogous to Huffman </th>
   </tr>
-   <tr>
-    <th>spread_fast()</th><th>0233233133133133</th><th>~0.020</th><th> fastest </th>
+  <tr>
+    <th>spread_range_d()</th><th>3333333333221110</th><th>~0.022</th><th> decreasing order </th>
+  </tr>
+  <tr>
+    <th>spread_fast()</th><th>0233233133133133</th><th>~0.020</th><th> fast </th>
   </tr>
   <tr>
     <th>spread_prec()</th><th>3313233103332133</th><th>~0.015</th><th>generally close to quantization dH/H</th>
