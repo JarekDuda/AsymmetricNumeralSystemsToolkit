@@ -28,13 +28,16 @@ This toolkit contains various choices of these functions, allows to test obtaine
 - spread_tuned_s(): uses sort instead of buckets - can be slighlty better, but slower,
 - pread_tuned_p(): uses 1/i approximation of 1/(p*ln(1+1/i)) formula for tuned spread,
  
-For example for 4 symbol and L=16 states: p=(0.04 0.16 0.16 0.64), q/L=(0.0625 0.1875 0.125 0.625). Huffman's penalty here is ~0.08 bits/symbol.
+For example for 4 symbol and L=16 states: p=(0.04 0.16 0.16 0.64), q/L=(0.0625 0.1875 0.125 0.625). 
 <table>
   <tr>
     <th>method</th><th>symbol spread</th><th>dH/H rate loss</th><th>comment</th>
   </tr>
   <tr>
     <th> - </th><th> - </th><th>~0.011</th><th>penalty of quantizer itself</th>
+  </tr>
+  <tr>
+    <th> Huffman </th><th> 0011222233333333 </th><th>~0.080</th><th>corresponds to Huffman</th>
   </tr>
   <tr>
     <th>spread_range()</th><th>0111223333333333</th><th>~0.059</th><th> analogous to Huffman </th>
