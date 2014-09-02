@@ -5,9 +5,10 @@ Testing various methods for choosing tANS entropy coding automata
 
 ANS is new approach to entropy coding, which adds fractional bits into consideration into Huffman-like decoder, combining its speed with accuracy of arithmetic coding, like in [implementation of Yann Collet](https://github.com/Cyan4973/FiniteStateEntropy). Another advantage in comparison to Huffman coding is that we choose the size of coding tables (L) here, corresponding to 2^depth of Huffman tree, and that there is no need to sort symbol probabilities (linear initialization).
 
-The choice of such finite L state entropy coding automaton consists of:
+The choice of such finite L state entropy coding automaton consists of 2-3 parts (which generally can be merged):
 - quantization of symbol probability distribution as p[s] ~ q[s]/L fractions (q is a natural number)
 - spreading these symbols in range [0, L-1], such that symbol s appears q[s] times
+- eventual scrambler to simultaneously encrypt encoded message: disturb the found spread in a pseudoranom way accordingly to cryptographic key.
 
 This toolkit contains various choices of these functions, allows to test obtained compression rates, compare with Huffman. Currently it allows to choose betwen:
 
@@ -27,6 +28,9 @@ This toolkit contains various choices of these functions, allows to test obtaine
 - spread_tuned(): uses both q and p - wants to get close to 1/x stationary probability of states (still linear, best compression rate),
 - spread_tuned_s(): uses sort instead of buckets - can be slighlty better, but slower,
 - pread_tuned_p(): uses 1/i approximation of 1/(p*ln(1+1/i)) formula for tuned spread,
+ 
+4) scramblers:
+- scrambler0(): for each 2i-1 and 2i positions, with some probability switch symbols - accordingly to PRNG initialized with cryptographic key.
  
 For example for 4 symbol and L=16 states: p=(0.04 0.16 0.16 0.64), q/L=(0.0625 0.1875 0.125 0.625). 
 <table>
