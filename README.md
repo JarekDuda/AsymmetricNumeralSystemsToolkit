@@ -30,7 +30,7 @@ This toolkit contains various choices of these functions, allows to test obtaine
 - pread_tuned_p(): uses 1/i approximation of 1/(p*ln(1+1/i)) formula for tuned spread,
  
 4) scramblers:
-- scrambler0(): for each 2i-1 and 2i positions, with some probability switch symbols - accordingly to PRNG initialized with cryptographic key.
+- scrambler0(): for each 2i-1 and 2i positions, with some probability switch symbols - accordingly to PRNG initialized with cryptographic key (the current version assumes at most 256 size alphabet).
  
 For example for 4 symbol and L=16 states: p=(0.04 0.16 0.16 0.64), q/L=(0.0625 0.1875 0.125 0.625). 
 <table>
