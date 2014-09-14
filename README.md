@@ -27,7 +27,8 @@ This toolkit contains various choices of these functions, allows to test obtaine
 - spread_prec():  very good using only q - wants to distributie symbols in 1/q[s] distance (still linear, but slower),
 - spread_tuned(): uses both q and p - wants to get close to 1/x stationary probability of states (still linear, best compression rate),
 - spread_tuned_s(): uses sort instead of buckets - can be slighlty better, but slower,
-- pread_tuned_p(): uses 1/i approximation of 1/(p*ln(1+1/i)) formula for tuned spread,
+- spread_tuned_p(): uses 1/i approximation of 1/(p*ln(1+1/i)) formula for tuned spread,
+- spread_uABS(): available arithmetic coding/decoding formulas for binary alphabet, e.g. used in [Matt Mahoney's fpaqc](http://www.mattmahoney.net/dc/).
  
 4) scramblers:
 - scrambler0(): for each 2i-1 and 2i positions, with some probability switch symbols - accordingly to PRNG initialized with cryptographic key (the current version assumes at most 256 size alphabet),
