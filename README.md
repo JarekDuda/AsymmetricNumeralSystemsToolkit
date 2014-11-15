@@ -70,7 +70,7 @@ For example for 4 symbol and L=16 states: p=(0.04 0.16 0.16 0.64), q/L=(0.0625 0
 
 Tuning shifts symbols right when q[s]/L > p[s] and left otherwise, getting better agreement and so compression rate. 
 
-Some sources: [article](http://arxiv.org/abs/1311.2540), [slides](https://dl.dropboxusercontent.com/u/12405967/ANSsem.pdf), [discussion](http://encode.ru/threads/2013-Asymmetric-numeral-system-toolkit-and-fast-tuned-symbol-spread).
+Some sources: [article](http://arxiv.org/abs/1311.2540), [slides](https://dl.dropboxusercontent.com/u/12405967/ANSsem.pdf), [discussion](http://encode.ru/threads/2013-Asymmetric-numeral-system-toolkit-and-fast-tuned-symbol-spread), [list of availible implementations of ANS](http://encode.ru/threads/2078-List-of-Asymmetric-Numeral-Systems-implementations).
 
 Feel free to add new probability distributions, better quantizers and spreads.
 
