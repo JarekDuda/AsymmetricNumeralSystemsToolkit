@@ -87,9 +87,9 @@ struct ANS {
          make_heap(v.begin(),v.end());  
          for( ;used!=L; used+=sgn){
              auto par = v.front(); pop_heap(v.begin(),v.end());v.pop_back();
-             cc[par.second]= -par.first;
+             cc[par.second] -= par.first;
              if((q[par.second]+=sgn)+sgn){
-                v.push_back({- par.first - pow(pL[par.second]-(q[par.second]+sgn),2)*ip[par.second], par.second}); 
+                v.push_back({cc[par.second] - pow(pL[par.second]-(q[par.second]+sgn),2)*ip[par.second], par.second});
                 push_heap (v.begin(),v.end());    
              }
          }
