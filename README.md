@@ -46,7 +46,7 @@ For example for 4 symbol and L=16 states: p=(0.04 0.16 0.16 0.64), q/L=(0.0625 0
     <th> Huffman </th><th> 0011222233333333 </th><th>~0.080</th><th>would give Huffman decoder</th>
   </tr>
   <tr>
-    <th>spread_range_i()</th><th>0111223333333333</th><th>~0.059</th><th> analogous to Huffman </th>
+    <th>spread_range_i()</th><th>0111223333333333</th><th>~0.059</th><th> analogous to Huffman </https://arxiv.org/abs/2106.06438th>
   </tr>
   <tr>
     <th>spread_range_d()</th><th>3333333333221110</th><th>~0.022</th><th> decreasing order </th>
@@ -75,3 +75,5 @@ Some sources: [article](http://arxiv.org/abs/1311.2540), [slides](https://dl.dro
 Feel free to add new probability distributions, better quantizers and spreads.
 
 Jarek Duda, July 2014
+
+Update: paper with tuned spread: https://arxiv.org/pdf/2106.06438
